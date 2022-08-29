@@ -6,14 +6,13 @@ const Navbar = () => {
   return (
     <nav className={styles.nav}>
       <div className={styles.item}>
-        <NavLink to="/profile" activeClassName={styles.activeLink}>
-          Profile
-        </NavLink>
+        <NavLink to="/profile">Profile</NavLink>
       </div>
       <div className={styles.item}>
-        <NavLink to="/dialogs" activeClassName={styles.activeLink}>
-          Messages
-        </NavLink>
+        <NavLink to="/dialogs">Messages</NavLink>
+      </div>
+      <div className={styles.item}>
+        <NavLink to="/users">Users</NavLink>
       </div>
       <div className={styles.item}>
         <a>News</a>
@@ -21,6 +20,7 @@ const Navbar = () => {
       <div className={styles.item}>
         <a>Music</a>
       </div>
+      <br />
       <div className={styles.item}>
         <a>Settings</a>
       </div>

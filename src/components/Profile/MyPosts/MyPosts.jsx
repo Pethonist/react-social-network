@@ -1,29 +1,33 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import Post from './Post/Post';
-
 import styles from './MyPosts.module.css';
 
-const MyPosts = () => {
-  let postsData = [
-    { id: 1, message: 'Hi', likesCount: 10 },
-    { id: 2, message: 'Hi again', likesCount: 2 },
-  ];
+const MyPosts = (props) => {
+  let postElements = props.posts.map((p) => <Post message={p.message} likesCount={p.likesCount} />);
+
+  let onAddPost = () => {
+    props.addPost();
+  };
+
+  let onPostChange = () => {
+    let text = newPostElement.current.value;
+    props.updateNewPostText(text);
+  };
+
+  let newPostElement = useRef(null);
 
   return (
     <div className={styles.postBlock}>
       <h3>My posts</h3>
       <div className={styles.posts}>
         <div>
-          <textarea></textarea>
+          <textarea ref={newPostElement} onChange={onPostChange} value={props.newPostText} />
         </div>
         <div>
-          <button>add post</button>
+          <button onClick={onAddPost}>Add post</button>
         </div>
       </div>
-      <div className={styles.posts}>
-        <Post message="Hi" likes="10" />
-        <Post message="first post" likes="15" />
-      </div>
+      <div className={styles.posts}>{postElements}</div>
     </div>
   );
 };

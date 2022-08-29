@@ -13,4 +13,9 @@
 
 .loginBlock a {
   color: white;
+  text-decoration: none;
+}
+
+.loginBlock {
+  float: right;
 }

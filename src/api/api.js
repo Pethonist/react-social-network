@@ -12,12 +12,33 @@ export const usersAPI = {
       .get(`users?page=${currentPage}&count=${pageSize}`)
       .then((response) => response.data);
   },
-
-  followUser(id) {
-    return instance.post(`follow/${id}`, {}).then((response) => response.data);
+  follow(userID) {
+    // return instance.post(`follow/${userID}`, {}).then((response) => response.data);
+    return instance.post(`follow/${userID}`).then((response) => response.data);
   },
+  unfollow(userID) {
+    return instance.delete(`follow/${userID}`).then((response) => response.data);
+  },
+  getProfile(userID) {
+    console.warn('Deprecated method. Please use profileAPI object');
+    return profileAPI.getProfile(userID);
+  },
+};
 
-  unfollowUser(id) {
-    return instance.delete(`follow/${id}`, {}).then((response) => response.data);
+export const profileAPI = {
+  getProfile(userID) {
+    return instance.get(`profile/${userID}`);
+  },
+  getStatus(userID) {
+    return instance.get(`profile/status/${userID}`);
+  },
+  updateStatus(status) {
+    return instance.put(`profile/status/`, { status: status });
+  },
+};
+
+export const authAPI = {
+  me() {
+    return instance.get(`auth/me`);
   },
 };
